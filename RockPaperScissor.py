@@ -23,12 +23,11 @@ def main():
             print("Invalid choice, please choose again.")
             continue
 
-        # 计算机随机选择
-
+        #Using Markvo Return Results
         computer_choice = get_result(history_matrix, choices, user_choice)
         print(f"Computer chose: {computer_choice}")
 
-        # determine
+        #Determine who win
         if user_choice == computer_choice:
             print("It's a tie!")
         elif (user_choice == "rock" and computer_choice == "scissors") or \
@@ -42,7 +41,7 @@ def main():
         update_matrix(history_matrix, choices, user_choice, previous_choice)
         previous_choice = user_choice
 
-
+#Function for updating historical data
 def update_matrix(matrix, action, result, previous_result):
     if previous_result == 0:
         matrix = matrix
@@ -51,7 +50,7 @@ def update_matrix(matrix, action, result, previous_result):
         index_2 = action.index(previous_result)
         matrix[index_1][index_2] += 1
 
-
+#Funtion for determining what is the most frequent result after previous result
 def get_result(matrix, action, result):
     index_last = action.index(result)
     max_count = max(matrix[index_last])
@@ -60,6 +59,7 @@ def get_result(matrix, action, result):
         return random.choice(action)
     return win_game(action, result)
 
+#Function for determing the result
 def win_game(action, index):
     if index == 2:
         return action[0]
